@@ -4,15 +4,17 @@ type GroupsMap<T> = {
 
 export function groupByKey(
   items: Array<string | number>,
-  key: string | number,
-): GroupsMap {
-  const result: GroupsMap = {};
+  key: string,
+): GroupsMap<T> {
+  const result: GroupsMap<T> = {};
 
   for (const item of items) {
-    if (result.hasOwnProperty(item[key])) {
-      result[item[key]].push(item);
+    const el: string[] = item[key];
+
+    if (Object.prototype.hasOwnProperty.call(result, el)) {
+      result.el.push(item);
     } else {
-      result[item[key]] = [item];
+      result.el = [item];
     }
   }
 
